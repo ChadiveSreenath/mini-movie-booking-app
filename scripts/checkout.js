@@ -30,27 +30,35 @@ let movies = document.getElementById("movie")
 
 
   let submit = document.getElementById("confirm").addEventListener("click", ()=>{
-    event.preventDefault();
+    
     let seats = document.getElementById("number_of_seats").value;
     let total = +(seats*100)
-    let updated_wallet = arr-total
+    
+let wallet = JSON.parse(localStorage.getItem("amount"))
 
 
-    if(updated_wallet<0){
+    if(wallet<0 || wallet<total){
       alert("Insufficient Balance!")
-      document.getElementById("wallet").innerText = arr
-
-
-    }
-    else {
-      alert ("Booking successfull!")
-    localStorage.setItem("amount", updated_wallet)
-    if (updated_wallet<0){
-      document.getElementById("wallet").innerText = 0
     }
     else{
-      document.getElementById("wallet").innerText = updated_wallet
+
+    let updated_wallet = arr-total
+    booking (updated_wallet)
+
+    function booking (updated_wallet){
+    console.log(updated_wallet)
+
+      if(updated_wallet<0)  {
+        alert("Insufficient Balance!")
+        // document.getElementById("wallet").innerText = arr;
       }
+      else{
+        alert("Booking successfull")
+        document.getElementById("wallet").innerText = updated_wallet;
+        localStorage .setItem("amount", updated_wallet)
+      }
+
+    }
 
     }
 

@@ -15,6 +15,7 @@ function main() {
 
   const url = `https://www.omdbapi.com/?apikey=8154155f&s=${search}`
 
+
   fetch(url).then((response) =>{
     return response.json();
   })
@@ -29,8 +30,18 @@ function main() {
 
 }
 
+  let id;
 
-
+function debouncinng(main,delay){
+  if(id){
+    return
+  }
+  else{
+    setTimeout(function(){
+      main()
+    },1000)
+  }
+}
 
 
 
